@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Example.Enums;
+using System;
 using Volo.Abp.Domain.Entities;
 
 namespace Example.Domain.Aggregates.FileAggregate;
@@ -17,6 +18,7 @@ public class File : AggregateRoot<Guid>
     public byte[] Blob { get; protected set; }
     public string Name { get; protected set; }
     public string Extension { get; protected set; }
+    public FileType Type { get; protected set; }
 
     public void Invariants()
     {
