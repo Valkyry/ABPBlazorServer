@@ -1,4 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Example.Configurations.CategoryAggregate;
+using Example.Domain.Aggregates.CategoryAggregate;
+using Example.Domain.Aggregates.FileAggregate;
+using Example.Domain.Aggregates.PatientAggregate;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -24,6 +29,11 @@ public class ExampleDbContext :
     ITenantManagementDbContext
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
+
+    public DbSet<Category> Categories => Set<Category>();
+    public DbSet<File> Files => Set<File>();
+    public DbSet<Patient> Patients => Set<Patient>();
+    public DbSet<PatientFileStore> PatientFileStores => Set<PatientFileStore>();
 
     #region Entities from the modules
 
@@ -76,11 +86,6 @@ public class ExampleDbContext :
 
         /* Configure your own tables/entities inside here */
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(ExampleConsts.DbTablePrefix + "YourEntities", ExampleConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(CategoryConfiguration)));
     }
 }

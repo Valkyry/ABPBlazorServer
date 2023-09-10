@@ -5,6 +5,8 @@ using Volo.Abp.Domain.Entities;
 namespace Example.Domain.Aggregates.FileAggregate;
 public class File : AggregateRoot<Guid>
 {
+    protected File() { }
+
     public File(Guid id, byte[] blob, string name, string extension)
     {
         Id = id;
