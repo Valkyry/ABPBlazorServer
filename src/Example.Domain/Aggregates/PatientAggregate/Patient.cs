@@ -42,6 +42,25 @@ public class Patient : AggregateRoot<Guid>
 
     #region behaviours
 
+    public void AssignPatientFile(Guid patientFileStoreId, Guid patientId, Guid FileId)
+    {
+        PatientFileStore patientFileStore = new(patientFileStoreId, patientId, FileId);
+        
+        FileStores.Add(patientFileStore);
+    }
+
+    public void UpdatePatient(string mrn, PatientStatus patientStatus, string firstName, string lastName, string nationalId, string alternateIdNumber, DateTime dateOfBirth, Guid categoryId)
+    {
+        MRN = mrn;
+        Status = patientStatus;
+        FirstName = firstName;
+        LastName = lastName;
+        NationalId = nationalId;
+        AlternateIdNumber = alternateIdNumber;
+        DateOfBirth = dateOfBirth;
+        CategoryId = categoryId;
+    }
+
     #endregion
 
     //#region Invariants
