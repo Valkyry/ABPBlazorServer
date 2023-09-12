@@ -1,17 +1,13 @@
 ﻿using Example.Aggregates.PatientAggregate.DTOs.Patient;
 using Example.Aggregates.PatientAggregate.DTOs.Patient.Forms;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
 namespace Example.Aggregates.PatientAggregate.Services;
-public interface IPatientAppService : IApplicationService
+public interface IPatientAppService : ICrudAppService<PatientDto, Guid, PagedAndSortedResultRequestDto, CreateOrUpdatePatientDto>
 {
-    Task<Guid> RegisterAsync(RegisterPatientDto dto, CancellationToken cancellationToken);
-    Task UpdateAsync(UpdatePatientDto dto, CancellationToken cancellationToken);
-    Task<PatientDto> GetAsync(Guid id, CancellationToken cancellationToken);
-    Task DeleteAsync(Guid id, CancellationToken cancellationToken);
-    Task<List<PatientDto>> GetAllAsync(CancellationToken cancellationToken);
+    Task<PatientDto> AdvanceSearchAsync(AdvanceSearchPatientDto advanceSearchPatientDto, CancellationToken cancellationToken);
 }

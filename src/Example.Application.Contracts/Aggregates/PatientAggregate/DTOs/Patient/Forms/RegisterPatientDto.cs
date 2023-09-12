@@ -2,7 +2,7 @@
 using System;
 
 namespace Example.Aggregates.PatientAggregate.DTOs.Patient.Forms;
-public record RegisterPatientDto
+public record CreateOrUpdatePatientDto
 {
     public string MRN { get; set; }
     public PatientStatus Status { get; set; }
